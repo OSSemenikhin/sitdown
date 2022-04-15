@@ -1,0 +1,96 @@
+-
+  var heroImageMain = {
+      name: 'main',
+      classNamePicture: 'preview-picture preview-picture--0',
+      classNameImg: 'preview-img preview-img--0',
+      path: path,
+      alt: 'Диван',
+      breakPoints: [ '768', '320',],
+    };
+
+  var heroImageMainModal = {
+    name: 'modal_hero_main',
+    classNamePicture: 'modal-header-photo__picture',
+    classNameImg: 'modal-header-photo__img',
+    path: path,
+    alt: 'Диван',
+    breakPoints: ['320', '768', '1024', '1300'],
+  };
+  var heroImagesDrawing = [
+    {
+      name: 'drawing_1',
+      classNamePicture: 'product-hero-description-drawing__picture',
+      classNameImg: 'product-hero-description-drawing__img',
+      path: path,
+      alt: 'Диван. Чертёж',
+      breakPoints: breakPoints,
+    },
+    {
+      name: 'drawing_2',
+      classNamePicture: 'product-hero-description-drawing__picture',
+      classNameImg: 'product-hero-description-drawing__img',
+      path: path,
+      alt: 'Диван. Чертёж',
+      breakPoints: breakPoints,
+    },
+  ];
+
+  var options = [
+    {data: '18 месяцев', title: 'Гарантия'},
+    {data: 'AAA41269004', title: 'Артикул'},
+    {data: '163 см', title: 'Длина'},
+    {data: '90 см', title: 'Высота'},
+    {data: '108 см', title: 'Глубина'},
+    {data: '200 см х 125 см', title: 'Спальное место'},
+    {data: '45 см', title: 'Высота посадки'},
+    {data: 'Опорный', title: 'Механизм'},
+    {data: 'Рогожка', title: 'Тип обивки'},
+    {data: 'Синий', title: 'Цвет'},
+    {data: 'Независимый пружинный блок', title: 'Наполнитель'},
+    {data: 'Металл. рама с дерев. латами', title: 'Материал каркаса'},
+    {data: 'Двухместные', title: 'Количество мест'},
+    {data: 'Прямые тканевые диваны', title: 'Категория'},
+    {data: 'Условия', title: 'Возврат'},
+  ];
+
+section.product-hero
+  h2.main-title Информация о продукте
+  .product-hero-photo
+    button.product-hero-photo__button(data-goody-path="product" data-goody-animation="fadeInUp" data-goody-speed-in="300" data-goody-speed-out="300")
+      +picture(heroImageMain, '', 'png')
+  .product-hero-slider.swiper
+    .product-hero-slider__wrapper.swiper-wrapper
+      - var n = 0
+      for img in heroImagesPreview
+        - n++
+        - mod = "" + n
+        .product-hero-slider__item.swiper-slide
+          button.product-hero-slider__button
+            +picture(img, mod, 'png')
+  .product-hero-action
+    .product-hero-action-rating
+      span.product-hero-action-rating__icon
+        svg.product-hero-action-rating__svg(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#star")
+      span.product-hero-action-rating__indicator 4.8
+    h3.product-hero-action__title Диван тканевый прямой “D-31”
+    p.product-hero-action__description Мини 120 см без ящика Stark синий (Рогожка)
+    p.product-hero-action__price 28 490 руб
+    .product-hero-action__buttons
+      button.product-hero-action__button.button-filled(data-goody-path="modalFeedback" data-goody-animation="fadeInUp" data-goody-speed-in="300" data-goody-speed-out="300") Купить в один клик
+      button.product-hero-action__tocart + Добавить в корзину
+  .product-hero-description
+    h2.product-hero-description__title Опорный механизм
+    p.product-hero-description__text Опорный механизм напоминает пантограф, к которому добавили дополнительную секцию. У опорного дивана сиденье «выпрыгивает» вперёд и вытаскивает вторую часть спального места. Заключительный штрих — опустить спинку.
+    p.product-hero-description__text Этот механизм не портит пол и не боится ковров. Требуется чуть больше силы, чтобы разложить диван, но подросток справится.
+    ul.product-hero-description-drawing
+      for img in heroImagesDrawing
+        li.product-hero-description-drawing__item
+          +picture(img, '', 'png')
+  ul.product-hero-options
+    for option in options
+      li.product-hero-options__item
+        h3.product-hero-options__title= option.title
+          //- span.product-hero-options__title-text= option.title
+        span.product-hero-options__line
+        span.product-hero-options__data= option.data

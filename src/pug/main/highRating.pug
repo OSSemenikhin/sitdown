@@ -1,0 +1,110 @@
+include ../layout/mixins
+include ../layout/variables
+
+-
+  var breakPoints = [ '768'];
+
+  var cards = [
+    {
+      name: 'highRating_1',
+      //- breakPoints: breakPoints,
+      title: 'Диван кожаный ',
+      //- title: 'Диван кожаный “R-94”',
+      //- model: '“R-94”',
+      model: 'R',
+      num: 94,
+      rating: '5,0',
+      relevant: '94 990',
+
+    },
+    {
+      name: 'highRating_2',
+      //- breakPoints: breakPoints,
+      title: 'Диван апартековый ',
+      //- title: 'Диван апартековый “T-75”',
+      //- model: '“T-75”',
+      model: 'T',
+      num: 75,
+      rating: '4,9',
+      relevant: '69 990',
+    },
+    {
+      name: 'highRating_3',
+      //- breakPoints: breakPoints,
+      title: 'Диван тканевый ',
+      //- title: 'Диван тканевый “D-31”',
+      //- model: '“D-31”',
+      model: 'D',
+      num: 31,
+      rating:'4,8',
+      relevant: '28 490',
+    },
+    {
+      name: 'highRating_4',
+      //- breakPoints: breakPoints,
+      title: 'Диван велюровый ',
+      //- title: 'Диван велюровый “Y-68”',
+      //- model: '“Y-68”',
+      model: 'Y',
+      num: 68,
+      rating: '4,8',
+      relevant: '22 990',
+    },
+    {
+      name: 'highRating_5',
+      //- breakPoints: breakPoints,
+      title: 'Диван из шинила ',
+      //- title: 'Диван из шинила “W-95”',
+      //- model: '“W-95”',
+      model: 'W',
+      num: 95,
+      rating: '4,8',
+      relevant: '22 990',
+    },
+    {
+      name: 'highRating_6',
+      //- breakPoints: breakPoints,
+      title: 'Диван флоковый ',
+      //- title: 'Диван флоковый “G-41”',
+      //- model: '“G-41”',
+      model: 'G',
+      num: 41,
+      rating: '4,8',
+      relevant: '17 990',
+    },
+    {
+      name: 'highRating_7',
+      title: 'Диван шиниловый ',
+      //- title: 'Диван шиниловый “V-43”',
+      //- model: '“V-43”',
+      model: 'V',
+      num: 43,
+      rating: '4,8',
+      relevant: '19 990',
+    },
+    {
+      name: 'highRating_8',
+      title: 'Диван велюровый ',
+      //- title: 'Диван велюровый “S-99”',
+      //- model: '“S-99”',
+      model: 'S',
+      num: 99,
+      rating: '4,7',
+      relevant: '19 990',
+    },
+  ]
+
+  var path = '/img/highRating/';
+  var ind = 0;
+
+section.high-rating.container
+  h2.high-rating__title Высокий рейтинг
+  ul.high-rating__list
+    each card in cards
+
+      - card.className = 'high-rating';
+      - card.alt = "Диван"
+
+      li.high-rating__item
+        +itemMerchCard(card, path, ++ind)
+  button.high-rating-more.button-filled Смотреть больше товаров

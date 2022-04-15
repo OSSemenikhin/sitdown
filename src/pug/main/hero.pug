@@ -1,0 +1,69 @@
+include ../layout/mixins
+include ../layout/variables
+
+-
+  var ind = 0;
+  var classNamePicture= 'hero-slider-article__picture';
+  var classNameImg = 'hero-slider-article__img';
+  var path = '/img/hero/';
+  var slidesHero = [
+    {
+      title: 'Скидка 15% на первую покупку',
+      itemMods: [],
+    },
+    {
+      title: '1000+ аксессуаров для дома',
+      itemMods: [],
+    },
+    {
+      title: 'Коллекция стильного и яркого текстиля',
+      itemMods: [],
+      titleMods: ['white',],
+    },
+  ];
+
+
+mixin itemSliderHero(slide)
+  - ind ++
+  -var className = 'hero-slider'
+  -var classNameItem = className + '__item';
+  -var classNameItemInd = classNameItem + '--' + ind;
+  -var classNameItemMod = '';
+  if slide.itemMods
+    if slide.itemMods.length > 0
+      for mod in slide.itemMods
+        - classNameItemMod = classNameItemMod + ' ' + classNameItem + '--' + mod;
+    -var classNameItemFull = classNameItem + ' ' + classNameItemInd + ' ' + classNameItemMod;
+  else
+    -var classNameItemFull = classNameItem + ' ' + classNameItemInd;
+
+  -var classNameTitle = className + '__title';
+  -var classNameTitleMod = '';
+  if slide.titleMods
+    if slide.titleMods.length > 0
+      for mod in slide.titleMods
+        - classNameTitleMod = classNameTitleMod + ' ' + classNameTitle + '--' + mod;
+  -var classNameTitleFull = classNameTitle + ' ' + classNameTitleMod;
+
+
+  .swiper-slide(class=classNameItemFull)
+    .hero-slider__wrapper
+      if slide.titleMods
+        if slide.titleMods.length > 0
+          h3(class=(classNameTitleFull))= slide.title
+      else
+        h3.hero-slider__title= slide.title
+      a.hero-button(class='hero-button--desktop' href='#') Получить!
+      //- +picture(slide, ind++, 'jpg')
+
+
+section.hero
+  h2.main-title Получить!
+  .hero-slider.swiper
+    .swiper-wrapper
+      for slide in slidesHero
+        +itemSliderHero(slide)
+    .hero-slider-pagination
+      .hero-slider-pagination__wrapper(id='hero-slider-pagination')
+  .container
+    a.hero-button(class='hero-button--mobile' href='#') Получить!

@@ -1,0 +1,510 @@
+@use "sass:math";
+@import "variables";
+@import "mixins";
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  font-family: "Open Sans", "Arial";
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+input,
+button {
+  font-family: inherit;
+}
+
+.body {
+  margin: 0;
+}
+
+.container {
+  width: $containerWidth320;
+  margin: auto;
+
+  @media (min-width: 768px) {
+    width: $containerWidth768;
+  }
+
+  @media (min-width: 1024px) {
+    width: $containerWidth1024;
+  }
+
+  @media (min-width: 1300px) {
+    width: $containerDesktop;
+  }
+}
+
+.breadcrumbs {
+  display: none;
+
+  @media (min-width: 768px) {
+    margin-bottom: 29px;
+    display: block;
+
+    &__list {
+      margin: 0;
+      padding: 0;
+      display: flex;
+      list-style: none;
+    }
+    &__item {
+      @include textHiddenEllipsis(200px, "b");
+      position: relative;
+      padding-right: 5px;
+    }
+
+    &__item:not(:last-child)::after {
+      content: "/";
+      position: absolute;
+      right: 0;
+      margin-right: 3px;
+      color: $colorBackGrey;
+    }
+
+    &__link {
+      margin-right: 10px;
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 100%;
+      color: $colorBackGrey;
+
+      &--active {
+        color: $colorPrimaryShade;
+      }
+    }
+  }
+}
+
+.main-title {
+  width: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.button-arrow {
+  @include buttonsStyleFound;
+  @include svgArrowButton;
+  width: 43px;
+  height: 43px;
+  padding: 5px;
+  border-radius: 100%;
+  color: $colorPrimary;
+
+  &__icon {
+    @include svgIcon;
+  }
+}
+.button-nofilled,
+.button-filled {
+  word-break: break-all;
+}
+
+.button-nofilled {
+  @include buttonPrimary("noFilled");
+  padding: 7px 25px;
+}
+
+.button-filled {
+  @include buttonPrimary("filled");
+  padding: 7px 25px;
+}
+
+.choozzie {
+  &__list {
+    background-color: $colorBackWhite;
+    border: 2px solid $colorBackLight;
+  }
+  &__button {
+    padding: 0;
+    font-size: inherit;
+    text-align: left;
+  }
+}
+
+.slider-buttons {
+  &-prev {
+    transform: rotate(180deg);
+  }
+  &-icon {
+    @include svgIcon;
+  }
+}
+
+.swiper-button-disabled {
+  filter: grayscale(100%);
+  pointer-events: none;
+}
+
+.no-break {
+  white-space: nowrap;
+  word-break: keep-all;
+}
+
+.product-card {
+  @include stretchContainer;
+  @include greyBackground;
+  position: relative;
+  // min-height: 278px;
+  height: 100%;
+  padding: 40px 11% 16px;
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 768px) {
+    // min-height: 420px;
+    padding: 67px 10% 30px;
+  }
+
+  &-rating {
+    position: absolute;
+    top: 15px;
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    color: $colorSecondary;
+
+    @media (min-width: 768px) {
+      top: 31px;
+    }
+
+    &__icon {
+      width: 13px;
+      height: 12px;
+      margin-right: 8px;
+      display: inline-flex;
+    }
+
+    &__indicator {
+      position: relative;
+      top: 2px;
+    }
+
+    @media (min-width: 768px) {
+      margin-bottom: 13px;
+      font-size: 16px;
+
+      &__icon {
+        width: 17px;
+        height: 16px;
+      }
+    }
+  }
+
+  &__picture {
+    position: relative;
+    height: auto;
+    min-height: 54px;
+    margin-bottom: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+
+    @media (min-width: 768px) {
+      min-height: 125px;
+      margin-bottom: 19px;
+      align-items: end;
+    }
+
+    // @media (min-width: 1024px) {
+    //   margin-bottom: 4px;
+    // }
+  }
+
+  &__img {
+    max-width: 100%;
+
+    @media (min-width: 768px) {
+      top: unset;
+      bottom: 0;
+      max-width: 112%;
+    }
+  }
+
+  &__text {
+    position: absolute;
+    bottom: 72px;
+    width: 105px;
+    max-width: 86%;
+    max-height: 105px;
+    margin: auto;
+    overflow: hidden;
+
+    @media (min-width: 512px) {
+      width: 80%;
+    }
+    @media (min-width: 768px) {
+      bottom: 107px;
+      width: 100%;
+    }
+    @media (min-width: 1024px) {
+      bottom: 109px;
+    }
+  }
+
+  // &__title,
+  // &__price,
+  // &__button {
+  //   position: absolute;
+  // }
+
+  &__title {
+    // @include lineHiddenEllipsis(3, "keep-all");
+    // bottom: 94px;
+    max-width: 90px;
+    margin: 0;
+    margin-bottom: 13px;
+    // padding-right: 37px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 137%;
+    color: $colorBackBlack;
+
+    @media (min-width: 768px) {
+      max-width: 237px;
+      // bottom: 127px;
+      margin-bottom: 25px;
+      // padding-right: 20px;
+      font-size: 24px;
+      line-height: 120%;
+
+      // &--2,
+      // &--4 {
+      //   padding-right: 0px;
+      // }
+    }
+  }
+
+  &__link {
+    @include navListLink;
+    max-width: 100%;
+    cursor: pointer;
+  }
+
+  &__model {
+    display: block;
+  }
+
+  &__price {
+    // bottom: 72px;
+    margin: 0;
+    margin-bottom: 15px;
+    display: inline-block;
+    line-height: 130%;
+    font-size: 16px;
+    color: $colorBackGrey1;
+
+    @media (min-width: 768px) {
+      // bottom: 106px;
+      margin-bottom: 22px;
+    }
+  }
+
+  &__button {
+    @include textHiddenEllipsis(6ch, "ib");
+    box-sizing: content-box;
+    // bottom: 15px;
+    // margin: auto;
+    display: block;
+    white-space: nowrap;
+    word-break: keep-all;
+
+
+    @media (min-width: 768px) {
+      left: 10%;
+      bottom: 30px;
+      padding: 14px 35px;
+    }
+  }
+}
+
+.special-card {
+  @include stretchContainer;
+  @include greyBackground;
+  position: relative;
+  min-height: 385px;
+  padding-top: 30px;
+  padding-bottom: 101px;
+
+  @media (min-width: 1300px) {
+    padding-top: 28px;
+  }
+
+  &-sale {
+    $height: 34px;
+    height: $height;
+
+    &__bacground--square {
+      position: relative;
+      width: 83px;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      background-color: $colorSecondary;
+      font-weight: bold;
+      font-size: 14px;
+      line-height: 19px;
+      color: $colorBackWhite;
+
+      &::after {
+        $widthTringle: 10px;
+        content: "";
+        position: absolute;
+        top: 0;
+        right: 0 - $widthTringle;
+        width: 0;
+        height: 0;
+        border-top: #{math.div($height, 2)} solid transparent;
+        border-bottom: #{math.div($height, 2)} solid transparent;
+        border-left: $widthTringle solid $colorSecondary;
+        display: inline-block;
+      }
+
+      @media (min-width: 1300px) {
+        width: 81px;
+
+        &--big {
+          margin-bottom: -25px;
+        }
+      }
+    }
+
+    &__sum {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  &__picture {
+    position: relative;
+    min-height: 234px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &--big {
+      padding: 0px 7%;
+
+      @media (min-width: 1300px) {
+        position: relative;
+        top: -21px;
+        width: 100%;
+        margin-bottom: -6px;
+        padding: 0px 88px;
+        box-sizing: border-box;
+      }
+    }
+  }
+
+  &__img--big {
+    width: 100%;
+
+    @media (min-width: 1024px) {
+      width: 250px;
+    }
+
+    @media (min-width: 1300px) {
+      width: 450px;
+    }
+  }
+
+  &__text {
+    width: 80%;
+    margin: auto;
+
+    &--big {
+      @media (min-width: 1300px) {
+        width: 90%;
+      }
+    }
+  }
+
+  &__title {
+    position: relative;
+    max-width: 100%;
+    margin: 0;
+    margin-bottom: 18px;
+    padding-right: 5%;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: normal;
+    color: $colorBackBlack;
+
+    @media (min-width: 768px) {
+      margin-bottom: 20px;
+      line-height: 129%;
+    }
+
+    &--big {
+      @media (min-width: 1300px) {
+        width: 200px;
+        padding-right: 0;
+      }
+    }
+  }
+
+  &__link {
+    @include navListLink;
+    display: block;
+  }
+
+  &__price {
+    &--relevant,
+    &--old {
+      @include textHiddenEllipsis(100%, "b");
+      margin: 0;
+      display: inline-block;
+      font-size: 18px;
+      line-height: 130%;
+      white-space: nowrap;
+      word-break: keep-all;
+    }
+
+    &--relevant {
+      margin-right: 29px;
+      color: $colorSecondary;
+    }
+
+    &--old {
+      font-weight: normal;
+      font-size: 16px;
+      text-decoration-line: line-through;
+      color: $colorBackGrey;
+    }
+  }
+
+  &__button {
+    @include buttonPrimary("noFilled");
+    @include textHiddenEllipsis(100%, "b");
+    position: absolute;
+    left: 10%;
+    bottom: 30px;
+    max-width: 100% - 20%;
+    padding: 13.5px 35px;
+    white-space: nowrap;
+    word-break: keep-all;
+
+    &--big {
+      @media (min-width: 1300px) {
+        left: 5%;
+      }
+    }
+  }
+}

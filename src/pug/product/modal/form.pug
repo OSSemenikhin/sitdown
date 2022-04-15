@@ -1,0 +1,26 @@
+.modal__container.modal__container--feedback(data-goody-target="modalFeedback")
+  button.modal__close
+    svg.modal__close-icon(aria-hidden="true")
+      use(xlink:href="/img/svg/sprite.svg#close")
+  .modal__content
+    .modal-form
+      h2.modal-form__title Купить в один клик
+      p.modal-form__description Чтобы оформить заказ — заполните формы ниже и наш менеджер свяжется с вами в течении часа.
+      form.modal-form__form
+        p.modal-form__error.modal-form__error--name.modal-form__error--hidden
+        label.modal-form__label
+          input.modal-form__input(type="text" placeholder="Как вас зовут?")
+        p.modal-form__error.modal-form__error--phone.modal-form__error--hidden
+        label.modal-form__label
+          input.modal-form__input(type="text" placeholder="Ваш телефон")
+        button.modal-form__button Отправить
+        p.modal-form__error.modal-form__error--check.modal-form__error--hidden
+        label.modal-form__label.modal-form__checkbox
+          input.modal-form__checkbox.modal-form__checkbox--hidden(type="checkbox")
+          span.modal-form__checkbox.modal-form__checkbox--visible
+          |Принимаю &nbsp;
+          a.modal-form__agreement(href='#') пользовательское соглашение
+    .modal-response._hidden
+      svg.modal-response__logo(aria-hidden="true")
+        use(xlink:href="img/svg/sprite.svg#backLogo")
+      h3.modal-response__title Спасибо, мы вам перезвоним!

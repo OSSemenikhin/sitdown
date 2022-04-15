@@ -1,0 +1,74 @@
+extends layout/main
+
+block styles
+  //- link(rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css")
+  //- link(rel="stylesheet" href="/resources/demos/style.css")
+  link(rel="stylesheet", href="https://unpkg.com/swiper@7/swiper-bundle.min.css")
+  link(rel="stylesheet" href="css/modalGoody.css")
+  link(rel="stylesheet" href="css/product.css")
+
+block scripts
+  script(src="https://unpkg.com/swiper@7/swiper-bundle.min.js")
+
+block content
+  include layout/mixins
+  include layout/variables
+
+  -
+    var path = '/img/product/'
+    var breakPoints = [ '768', '320',];
+
+    var heroImagesPreview = [
+      {
+        name: 'preview_1',
+        classNamePicture: 'preview-picture',
+        classNameImg: 'preview-img',
+        path: path,
+        alt: 'Диван',
+        breakPoints: ['320',],
+      },
+      {
+        name: 'preview_3',
+        classNamePicture: 'preview-picture',
+        classNameImg: 'preview-img',
+        path: path,
+        alt: 'Диван',
+        breakPoints: ['320',],
+      },
+      {
+        name: 'preview_2',
+        classNamePicture: 'preview-picture',
+        classNameImg: 'preview-img',
+        path: path,
+        alt: 'Диван',
+        breakPoints: ['320',],
+      },
+      {
+        name: 'preview_4',
+        classNamePicture: 'preview-picture',
+        classNameImg: 'preview-img',
+        path: path,
+        alt: 'Диван',
+        breakPoints: ['320',],
+      },
+    ];
+
+    var breadcrumbs = [
+      'Главная',
+      'Каталог',
+      'Диваны',
+      'Прямые диваны',
+    ];
+
+  section.product.container
+    h2.main-title Карточка товара
+    .breadcrumbs
+      ul.breadcrumbs__list
+        for link in breadcrumbs
+          li.breadcrumbs__item
+            a.breadcrumbs__link(href="#")= link
+        li.breadcrumbs__item
+          a.breadcrumbs__link.breadcrumbs__link--active(href="#") D-31
+    include product/hero
+  include product/similar
+  include product/modal/modal

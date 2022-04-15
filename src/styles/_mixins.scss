@@ -1,0 +1,572 @@
+@use "sass:math";
+
+// @include textHiddenEllipsis(100%, 'ib');
+
+@mixin textHiddenEllipsis($width, $disp) {
+  max-width: $width;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  @if ($disp == "ib") {
+    display: inline-block;
+  }
+  @if ($disp == "i") {
+    display: inline;
+  }
+  @if ($disp == "b") {
+    display: block;
+  }
+  @if ($disp == "f") {
+    display: flex;
+  }
+}
+
+// @include lineHiddenEllipsis(2, 'unset');
+// @include lineHiddenEllipsis(2, 'break-all');
+// @include lineHiddenEllipsis(2, 'keep-all');
+@mixin lineHiddenEllipsis($lines, $break) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -moz-box;
+  -moz-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  line-clamp: $lines;
+  box-orient: vertical;
+  word-break: $break;
+}
+
+@mixin telLink {
+  @include transition(color);
+  position: relative;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: normal;
+  color: $colorSecondary;
+
+  &__icon,
+  &__tel {
+    @include svgIcon;
+    color: inherit;
+  }
+
+  &__icon {
+    position: absolute;
+    left: 2px;
+    width: 17px;
+    height: 17px;
+    margin-right: 5px;
+    display: inline-block;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: $colorSecondaryLight;
+  }
+
+  &:focus-visible {
+    background-color: $colorSecondaryBone;
+  }
+
+  &:active {
+    color: $colorSecondaryShade;
+  }
+}
+
+@mixin svgIcon {
+  max-width: 100%;
+  max-height: 100%;
+  color: inherit;
+  pointer-events: none;
+}
+
+@mixin buttonsStyleFound {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-family: inherit;
+
+  $transitionProp: color, background-color;
+  @include transition($transitionProp);
+
+  &:hover {
+    color: $colorPrimaryLight;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+    background-color: $colorPrimaryLight;
+    color: $colorBackWhite;
+  }
+
+  &:active {
+    color: $colorPrimaryShade;
+  }
+}
+
+@mixin closed {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@mixin open {
+  opacity: 1;
+  visibility: visible;
+}
+
+@mixin titleMain {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 100%;
+  color: $colorBackBlack;
+
+  @media (min-width: 768px) {
+    font-size: 32px;
+  }
+}
+
+@mixin logo($width, $height) {
+  width: $width;
+  height: $height;
+
+  svg {
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+@mixin transition($prop) {
+  transition-property: $prop;
+  transition-timing-function: ease-out;
+  transition-duration: 0.3s;
+}
+
+@mixin statesColor($hover, $focus, $active) {
+  &:hover {
+    color: $hover;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+    color: $focus;
+  }
+
+  &:active {
+    color: $active;
+  }
+}
+
+@mixin greyBackground {
+  background-color: $colorBackLight1;
+  border-radius: 10px;
+}
+
+@mixin stretchContainer {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+@mixin buttonPrimary($type) {
+  $transitionProp: background-color, border-color, color;
+  @include transition($transitionProp);
+  border: 2px solid $colorPrimary;
+  border-radius: 10px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+
+  @if $type== "noFilled" {
+    background-color: transparent;
+    color: $colorPrimary;
+
+    &:hover {
+      background-color: $colorPrimary;
+      color: $colorBackWhite;
+    }
+
+    &:focus-visible {
+      outline: none;
+      background-color: $colorPrimaryLight;
+      color: $colorBackWhite;
+    }
+
+    &:active {
+      border-color: $colorPrimaryShade;
+      background-color: $colorPrimaryShade;
+      color: $colorBackWhite;
+    }
+  }
+
+  @if $type== "filled" {
+    background-color: $colorPrimary;
+    text-align: center;
+    color: $colorBackLight;
+
+    &:hover {
+      background-color: $colorPrimaryLight;
+      color: $colorBackWhite;
+    }
+
+    &:focus-visible {
+      outline: none;
+      background-color: $colorPrimaryLight;
+      border-color: $colorPrimaryShade;
+    }
+
+    &:active {
+      background-color: $colorPrimaryShade;
+      border-color: $colorPrimaryShade;
+    }
+  }
+}
+
+@mixin hoverButtonArrow {
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: $colorBackWhite;
+  }
+
+  &:focus-visible {
+    outline: none;
+    color: $colorBackWhite;
+  }
+
+  &:active {
+    color: $colorBackWhite;
+  }
+}
+
+@mixin inputsActiveStates {
+  border: 2px solid transparent;
+
+  &:hover {
+    background-color: $colorBackMdGrey;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: none;
+    background-color: $colorPrimaryBone;
+    border-color: $colorPrimary;
+  }
+}
+
+@mixin svgArrowButton {
+  $transitionProp: color, fill, stroke;
+  @include transition($transitionProp);
+  max-width: 100%;
+  max-height: 100%;
+  fill: transparent;
+  stroke: $colorPrimary;
+  stroke-width: 2px;
+  // pointer-events: none;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    stroke: $colorBackWhite;
+    stroke-width: 2px;
+    fill: $colorPrimary;
+  }
+
+  &:focus-visible {
+    outline: none;
+    stroke: $colorBackWhite;
+    stroke-width: 2px;
+    fill: $colorPrimaryLight;
+  }
+
+  &:active {
+    color: $colorPrimaryShade;
+
+    stroke: $colorBackWhite;
+    stroke-width: 2px;
+    fill: $colorPrimaryShade;
+  }
+}
+
+@mixin svgSocilalLink {
+  @include transition(color);
+
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: $colorPrimary;
+  }
+
+  &:focus-visible {
+    outline: none;
+    color: $colorBackWhite;
+    background-color: $colorPrimaryLight;
+    // svg {
+    //   fill: $colorPrimaryLight;
+    // }
+  }
+
+  &:active {
+    color: $colorPrimaryShade;
+  }
+}
+
+@mixin navListLink {
+  $transitionProp: color, background-color;
+  @include transition($transitionProp);
+
+  :focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: $colorPrimary;
+  }
+
+  &:focus-visible {
+    outline: none;
+    background-color: $colorPinkViolet;
+    color: $colorBackBlack;
+  }
+
+  &:active {
+    color: $colorPrimaryShade;
+  }
+}
+
+@mixin descListLink {
+  $transitionProp: color, background-color;
+  @include transition($transitionProp);
+
+  :focus {
+    outline: none;
+  }
+
+  &:hover {
+    color: $colorPrimary;
+  }
+
+  &:focus-visible {
+    outline: none;
+    background-color: $colorPinkViolet;
+    color: $colorPrimary;
+  }
+
+  &:active {
+    color: $colorPrimaryShade;
+  }
+}
+
+@mixin selectMenu {
+  &__header {
+    @include buttonsStyleFound;
+    $transitionProp: background, color, border;
+    @include transition($transitionProp);
+    position: relative;
+    height: 100%;
+
+    &.open {
+      color: $colorPrimaryLight;
+    }
+
+    &:hover {
+      border-color: $colorPrimary;
+    }
+
+    &:focus {
+      outline: none;
+      color: $colorPrimary;
+    }
+
+    &:focus-visible {
+      outline: none;
+      border-color: $colorPrimary;
+      background-color: $colorPinkViolet;
+    }
+
+    &:active {
+      border-color: $colorPrimaryShade;
+      background-color: transparent;
+    }
+  }
+
+  &__item {
+    @include transition(background);
+    &.focused {
+      background-color: $colorPinkViolet;
+      color: $colorPrimary;
+    }
+  }
+
+  &__option {
+    @include transition(color);
+    padding: 5px 0px 5px 0px;
+    color: inherit;
+
+    &:hover {
+      color: $colorPrimaryLight;
+    }
+
+    &:active {
+      color: $colorPrimaryShade;
+    }
+  }
+}
+
+@mixin checkBox($p, $l) {
+  position: relative;
+  padding-left: $p;
+  display: flex;
+  align-items: center;
+
+  &--hidden {
+    position: absolute;
+    pointer-events: none;
+    opacity: 0;
+    &:focus + .feedback-form__checkbox--visible {
+      outline: $colorPrimary;
+    }
+    &:focus-visible + .feedback-form__checkbox--visible {
+      outline: auto;
+    }
+  }
+
+  &--visible {
+    $transitionProp: border-color;
+    @include transition($transitionProp);
+    position: absolute;
+    // right: -$left;
+    left: -$l;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &::after,
+    &::before {
+      @include transition(opacity);
+      content: "";
+      position: absolute;
+    }
+
+    &::after {
+      top: calc(50% - 3px);
+      width: 8px;
+      height: 5px;
+      display: inline-block;
+      border-left: 2px solid $colorBackWhite;
+      border-bottom: 2px solid $colorBackWhite;
+      transform: rotate(-45deg);
+      opacity: 0;
+    }
+
+    &::before {
+      width: 14px;
+      height: 14px;
+      border: 1px solid $colorBackGrey;
+      border-radius: 3px;
+    }
+  }
+
+  &--hidden:checked + &--visible {
+    &::after {
+      opacity: 1;
+    }
+
+    &::before {
+      background-color: $colorPrimary;
+      border: 1px solid $colorPrimary;
+    }
+  }
+}
+
+@mixin passLinkArrow {
+  $transitionProp: color, border-color;
+  @include transition($transitionProp);
+  @include svgArrowButton;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  font-weight: 600;
+  color: $colorPrimary;
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+
+    &--big {
+      position: relative;
+      right: 2px;
+    }
+  }
+
+  &__name {
+    @include transition($transitionProp);
+    margin-right: 5px;
+    border-bottom: 2px solid transparent;
+    letter-spacing: 0.6px;
+    &:hover {
+      border-color: $colorPrimary;
+    }
+
+    &:focus {
+      border-color: $colorPrimary;
+    }
+
+    &:active {
+      border-color: $colorPrimaryShade;
+    }
+  }
+}
+
+@mixin formValidate {
+  &__input {
+    &.error {
+      border-color: $colorDanger;
+    }
+    &.validate {
+      border-color: $colorSucccess;
+    }
+  }
+
+  &__error {
+    margin: 0;
+    margin-bottom: 5px;
+    padding: 0;
+    font-size: 12px;
+    color: $colorDanger;
+
+    @media (min-width: 768px) {
+      font-size: 12px;
+    }
+
+    &--hidden {
+      height: 0;
+      margin: 0;
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+}

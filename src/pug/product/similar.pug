@@ -1,0 +1,96 @@
+-
+  var slides = [
+    {
+      name: 'slide_1',
+      breakPoints: breakPoints,
+      title: 'Диван велюровый ',
+      //- model: '“R-85”',
+      model: 'R',
+      num: 85,
+      rating: '4,5',
+      relevant: '34 990',
+      },
+      {
+      name: 'slide_2',
+      breakPoints: breakPoints,
+      title: 'Диван флоковый ',
+      //- model: '“H-58”',
+      model: 'H',
+      num: 58,
+      rating: '4,6',
+      relevant: '23 990',
+      },
+      {
+        name: 'slide_3',
+        breakPoints: breakPoints,
+        title: 'Диван велюровый ',
+        //- model: '“S-44”',
+        model: 'S',
+        num: 44,
+        rating: '4,6',
+        relevant: '19 990',
+      },
+      {
+        name: 'slide_4',
+        breakPoints: breakPoints,
+        title: 'Диван шиниловый ',
+        //- model: '“V-43”',
+        model: 'V',
+        num: 43,
+        rating: '4,6',
+        relevant: '19 990',
+      },
+      {
+        name: 'slide_1',
+        breakPoints: breakPoints,
+        title: 'Диван велюровый ',
+        //- model: '“R-85”',
+        model: 'R',
+        num: 85,
+        rating: '4,5',
+        relevant: '34 990', },
+      {
+        name: 'slide_2',
+        breakPoints: breakPoints,
+        title: 'Диван флоковый ',
+        //- model: '“H-58”',
+        model: 'H',
+        num: 58,
+        rating: '4,6',
+        relevant: '23 990', },
+      {
+        name: 'slide_3',
+        breakPoints: breakPoints,
+        title: 'Диван флоковый ',
+        //- model: '“H-58”',
+        model: 'H',
+        num: 58,
+        rating: '4,6',
+        relevant: '23 990', },
+      {
+        name: 'slide_4',
+        breakPoints: breakPoints,
+        title: 'Диван флоковый ',
+        //- model: '“H-58”',
+        model: 'H',
+        num: 58,
+        rating: '4,6',
+        relevant: '23 990', },
+  ];
+
+section.product-similar.container
+  h2.product-similar__title Похожие товары
+  .product-similar-slider.swiper
+    .product-similar-slider__wrapper.swiper-wrapper
+      for slide in slides
+        - slide.className = 'product-similar-slider'
+        .product-similar-slider__item.swiper-slide
+          +itemMerchCard(slide, path, ++n)
+    .swiper-pagination
+  .product-similar-slider-buttons(class='slider-buttons')
+    button.product-similar-slider-buttons--prev.button-arrow(class='slider-buttons-prev')
+      svg.button-arrow__icon(aria-hidden="true")
+        use(xlink:href="img/svg/sprite.svg#arrow")
+    button.product-similar-slider-buttons--next.button-arrow(class='slider-buttons-next')
+      svg.button-arrow__icon(aria-hidden="true")
+        use(xlink:href="img/svg/sprite.svg#arrow")

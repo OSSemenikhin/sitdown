@@ -1,0 +1,130 @@
+include ../layout/mixins
+include ../layout/variables
+
+-
+  var breakPoints = [ 1300, 768, 320,];
+  var items = [
+    {
+      typesLinks: [
+        { name: 'Прямые', href: '#', },
+        { name: 'Угловые', href: '#', },
+        { name: 'Модульные', href: '#', },
+      ],
+      breakPoints: breakPoints,
+      name: 'Диваны',
+      imgName: 'topCategories_sofas',
+      href: '#',
+      big: true,
+      alt: 'Диваны',
+    },
+    {
+      typesLinks: [
+        { name: 'Односпальные', href: '#', },
+        { name: 'Двуспальные', href: '#', },
+      ],
+      breakPoints: breakPoints,
+      name: 'Кровати',
+      imgName: 'topCategories_beds',
+      href: '#',
+      alt: 'Кровати',
+    },
+    {
+      typesLinks: [
+        { name: 'Мягкие', href: '#', },
+        { name: 'Кресла-кровати', href: '#', },
+      ],
+      breakPoints: breakPoints,
+      name: 'Кресла',
+      imgName: 'topCategories_armchairs',
+      href: '#',
+      alt: 'Кресла',
+    },
+    {
+      typesLinks: [
+        { name: 'Тумбы', href: '#', },
+        { name: 'Комоды', href: '#', },
+      ],
+      breakPoints: breakPoints,
+      name: 'Тумбы и комоды',
+      nameMod: '--long',
+      imgName: 'topCategories_tumblesAndDressers',
+      href: '#',
+      alt: 'Тумбы и комоды',
+    },
+    {
+      typesLinks: [
+        { name: 'Деревянные', href: '#', mod: '--mr',},
+        { name: 'Металлокаркас', href: '#', },
+      ],
+      breakPoints: breakPoints,
+      name: 'Стулья',
+      imgName: 'topCategories_chairs',
+      href: '#',
+      alt: 'Стулья',
+    },
+  ];
+  var ind = 0;
+
+mixin categoryItem(item)
+  -
+    var obj = {
+      alt: item.alt,
+      name: item.imgName,
+      classNamePicture: 'tops-article__picture',
+      classNameImg: 'tops-article__img',
+      classNameImgMod: item.big ? 'tops-article__img--big' : '',
+      path: '/img/topCategories/',
+      breakPoints: item.breakPoints,
+      mod: item.big ? 'tops-article__picture--big' : '',
+    }
+
+    var modWrapper = item.big ? 'tops__item--big' : '';
+    var modArticle = item.big ? 'tops-article--big' : '';
+    var modHead = item.big ? 'tops-article__head--big' : '';
+    var modLinksList = item.big ? 'tops-article__links--big' : '';
+    var modItem = item.big ? 'tops-article__item--big' : '';
+    var modTypeLink = item.big ? 'tops-article__link--big' : '';
+    var modTitle = item.big ? 'tops-article-title--big' : '';
+    var modTitleLinkBig = item.big ? 'tops-article-title__link--big' : '';
+    var modTitleLinkMod = item.nameMod ? 'tops-article-title__link' + item.nameMod : '';
+    var modTitleLink = modTitleLinkBig + ' ' + modTitleLinkMod;
+    var modTitleIconBig = item.big ? 'tops-article-title__icon--big' : '';
+    var modTitleIconMod = item.nameMod ? 'tops-article-title__icon' + item.nameMod : '';
+    var modTitleIcon = modTitleIconBig + ' ' + modTitleIconMod;
+    var modCatalog = item.big ? 'tops-article__catalog--big' : '';
+    var modPass = item.big ? 'tops-article-pass--big' : '';
+    var modPass = item.big ? 'tops-article-pass--big' : '';
+    var modPassName = item.big ? 'tops-article-pass__name--big' : '';
+    var modPassIcon = item.big ? 'tops-article-pass__icon--big' : '';
+
+  li.tops__item(class=modWrapper)
+    article.tops-article(class=modArticle)
+      .tops-article__head(class=modHead)
+        ul.tops-article__links(class=modLinksList)
+          for link in item.typesLinks
+            if link.mod
+              -var modItemFull = modItem + ' ' + 'tops-article__item' + link.mod
+              li.tops-article__item(class=modItemFull)
+                a.tops-article__link(class=modTypeLink href=link.href)= link.name
+            else
+              li.tops-article__item(class=modItem)
+                a.tops-article__link(class=modTypeLink href=link.href)= link.name
+      h3.tops-article-title.tops-article-title--linked(class=modTitle)
+        a.tops-article-title__link(class=modTitleLink href=item.href)= item.name
+          svg.tops-article-title__icon(class=modTitleIcon)
+            use(xlink:href="img/svg/sprite.svg#arrow")
+      +picture(obj, ++ind, 'png')
+      //- .tops-article__catalog.tops-article__catalog--wrapped(class=modCatalog)
+      a.tops-article-pass(class=modPass href="#")
+        span.tops-article-pass__name(class=modPassName) В каталог
+        svg.tops-article-pass__icon(class=modPassIcon)
+          use(xlink:href="img/svg/sprite.svg#arrow")
+
+
+//- render
+section.tops.container
+  h2.tops__title Топ категории
+  ul.tops__list
+    for item in items
+      +categoryItem(item)
+

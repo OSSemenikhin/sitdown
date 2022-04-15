@@ -1,0 +1,38 @@
+extends layout/main
+
+block styles
+  link(rel="stylesheet" href="//code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css")
+  //- link(rel="stylesheet" href="/resources/demos/style.css")
+  link(rel="stylesheet" href="css/catalog.css")
+
+block scripts
+  script(src="https://code.jquery.com/jquery-3.6.0.js")
+  script(src="https://code.jquery.com/ui/1.13.1/jquery-ui.js")
+
+block content
+  include layout/mixins
+  include layout/variables
+
+  -
+    var breadcrumbs = [
+        'Главная',
+        'Каталог',
+        'Диваны',
+      ];
+
+  section.breadcrumbs
+    h2.main-title Разделы
+    .container
+      ul.breadcrumbs__list
+        for link in breadcrumbs
+          li.breadcrumbs__item
+            a.breadcrumbs__link(href="#")= link
+        li.breadcrumbs__item
+          a.breadcrumbs__link.breadcrumbs__link--active(href="#") Прямые диваны
+  section.catalog.container
+    h2.main-title Каталог товаров
+    include catalog/content
+    include catalog/panel/panel
+
+
+

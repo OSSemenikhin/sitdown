@@ -1,0 +1,117 @@
+.useful {
+  position: relative;
+  padding-bottom: 104px;
+
+  &__title {
+    @include titleMain;
+    margin-bottom: 26px;
+  }
+}
+
+.useful-slider {
+  margin-bottom: 12px;
+}
+
+.useful-slider-article {
+  @include greyBackground;
+  min-height: 341px;
+  padding-bottom: 115px;
+
+  &__picture,
+  &__img {
+    width: 100%;
+  }
+
+  &__picture {
+    margin-bottom: 24px;
+    display: block;
+  }
+
+  &__info {
+    padding: 0 30px;
+  }
+
+  &__title {
+    width: 97%;
+    margin: 0;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  &__button {
+    @include textHiddenEllipsis(7ch, 'ib');
+    @include buttonPrimary("noFilled");
+    position: absolute;
+    bottom: 32px;
+    padding: 14px 35px;
+    white-space: nowrap;
+    word-break: keep-all;
+  }
+}
+
+.useful-slider-buttons {
+  position: absolute;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 768px) {
+  .useful {
+    margin-bottom: 70px;
+
+    .container {
+      position: relative;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .useful {
+    margin-bottom: 67px;
+    padding-bottom: 0;
+  }
+
+  .useful-slider-article {
+    &__picture {
+      margin-bottom: 25px;
+    }
+
+    &__title {
+      max-width: 540px;
+      font-size: 16px;
+      line-height: 22px;
+    }
+  }
+
+  .useful-slider-buttons {
+    top: -6px;
+    bottom: unset;
+    left: unset;
+    right: -5px;
+    transform: translateX(0%);
+  }
+}
+
+@media (min-width: 1300px) {
+  .useful {
+    margin-bottom: 71px;
+  }
+
+  .useful-slider-article {
+    min-height: 676px;
+    padding-bottom: 0px;
+
+    &__picture {
+      margin-bottom: 27px;
+    }
+
+    &__title {
+      max-width: 550px;
+      font-size: 24px;
+      line-height: 32px;
+    }
+  }
+}

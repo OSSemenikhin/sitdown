@@ -1,0 +1,250 @@
+@import "mixins";
+@import "variables";
+
+.cooperation {
+  margin-bottom: 68px;
+
+  &__title,
+  &__subtitle {
+    margin: 0;
+    padding: 0;
+  }
+
+  &__title {
+    margin-bottom: 32px;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+  }
+
+  &__subtitle {
+    margin-bottom: 11px;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+
+    &--colored {
+      font-weight: 600;
+      font-size: 16px;
+      color: $colorSecondary;
+    }
+
+    &--guarantee {
+      margin-bottom: 14px;
+    }
+  }
+
+  &__description,
+  &__item,
+  &__opportunity {
+    color: $colorBackGrey1;
+  }
+
+  &__description {
+    margin: 0;
+    margin-bottom: 31px;
+    padding: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 180%;
+  }
+
+  &__ul {
+    margin: 0;
+    margin-bottom: 30px;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__ol {
+    margin: 0;
+    margin-bottom: 30px;
+    padding: 0;
+  }
+  .ol-order {
+    margin-right: 14px;
+    display: inline-block;
+    color: $colorSecondary;
+  }
+
+  &__item {
+    &--ordered {
+      margin-bottom: 12px;
+      padding-left: 1px;
+      display: flex;
+      list-style: none;
+      font-size: 14px;
+      line-height: 25px;
+    }
+
+    &--not-ordered {
+      margin-bottom: 13px;
+      padding-left: 36px;
+      background-repeat: no-repeat;
+      background-size: 38px 38px;
+      background-position: -7px -4px;
+      font-size: 14px;
+      line-height: 21px;
+    }
+
+    &--1 {
+      background-image: url(../img/svg/sprite.svg#network);
+    }
+    &--2 {
+      background-image: url(../img/svg/sprite.svg#briefcase);
+    }
+    &--3 {
+      background-image: url(../img/svg/sprite.svg#git-pull-request);
+    }
+  }
+
+  &__advantages-title {
+    margin: 0;
+    margin-bottom: 12px;
+    padding: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+  }
+
+  &__opportunity {
+    margin: 0;
+    margin-bottom: 13px;
+    font-size: 14px;
+    line-height: 25px;
+
+    &--last {
+      margin-bottom: 33px;
+    }
+  }
+
+  &__guarantee-info {
+    margin: 0;
+    padding-left: 50px;
+    padding-right: 56px;
+    background-repeat: no-repeat;
+    background-size: 89px 83px;
+    background-position: -27px -4px;
+    background-image: url(../img/svg/sprite.svg#pencil);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 150%;
+    color: $colorBackBlack;
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    margin-bottom: 17px;
+  }
+
+  .cooperation {
+    &__title {
+      margin-bottom: 38px;
+      font-size: 32px;
+    }
+
+    &__subtitle {
+      margin-bottom: 19px;
+      font-size: 24px;
+
+      &--colored {
+        margin-bottom: 14px;
+        font-size: 16px;
+      }
+    }
+
+    &__description {
+      margin-bottom: 37px;
+      font-size: 16px;
+    }
+
+    &__ul {
+      margin: 0 0 40px;
+    }
+
+    &__ol {
+      margin-bottom: 22px;
+    }
+    .ol-order {
+      margin-right: 12px;
+    }
+
+    &__item {
+      &--not-ordered {
+        margin-bottom: 15px;
+        background-size: 40px 40px;
+        background-position: -8px -10px;
+        font-size: 16px;
+        line-height: 23px;
+      }
+
+      &--ordered {
+        padding-left: 1px;
+        font-size: 16px;
+        line-height: 29px;
+      }
+    }
+
+    &__advantages-title {
+      margin: 0 0 19px;
+      font-size: 24px;
+    }
+
+    &__opportunity {
+      margin: 0 0 10px;
+      font-size: 16px;
+      line-height: 29px;
+
+      &--last {
+        margin-bottom: 36px;
+      }
+    }
+
+    &__guarantee-info {
+      padding: 30px 0 23px 109px;
+      background-size: 185px;
+      background-position: -55px 12px;
+      font-size: 24px;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .cooperation {
+    &__description {
+      max-width: 845px;
+    }
+
+    &__item {
+      &--not-ordered {
+        max-width: 621px;
+      }
+      &--ordered {
+        max-width: 840px;
+      }
+    }
+
+    &__opportunity {
+      max-width: 844px;
+    }
+
+    &__guarantee-info {
+      max-width: 640px;
+    }
+  }
+
+  .footer-head {
+    padding-top: 23px;
+  }
+}
+
+@media (min-width: 1300px) {
+  .footer-head {
+    padding-top: 27px;
+
+    &-socials {
+      padding-top: 21px;
+    }
+  }
+}

@@ -1,0 +1,82 @@
+include mixins
+include variables
+
+-
+  var navListItems = [
+    {name: 'Каталог', href: '#',},
+    {name: 'Магазины', href: '#',},
+    {name: 'Шоу-рум', href: '#',},
+    {name: 'Доставка и оплата', href: '#',},
+    {name: 'Дисконт', href: '#',},
+    {name: 'Контакты', href: '#',},
+  ];
+
+  var descriptionListItems = [
+    {name: 'О компании', href: '#',},
+    {name: 'Гарантия и возврат', href: '#',},
+    {name: 'Корпоративным клиентам', href: '#',},
+    {name: 'Дизайн-решение', href: '#',},
+  ];
+
+mixin headerLinkItem(obj, className)
+  -
+    var classNameItem = 'header-' + className + '__item';
+    var classNameLink = 'header-' + className + '__link';
+  li(class=classNameItem)
+    a(class=classNameLink, href=obj.href)= obj.name
+
+
+header.header.container
+  +logo('header-', '--mobile')
+  .header-region
+    h3.header-region__title Ваш регион:
+    .header-region-select(id="region__select")
+  a.header-tel(href="#")
+    svg.header-tel__icon(aria-hidden="true")
+      use(xlink:href="img/svg/sprite.svg#phone")
+    | +7 (495) 885-45-47
+  ul.header-decriptions(class='header-decriptions--desktop')
+    for link in descriptionListItems
+      +headerLinkItem(link, 'decriptions')
+  .header__menu
+    button.header-burger(id='burger')
+      svg.header-burger__icon(aria-hidden="true")
+        use(xlink:href="img/svg/sprite.svg#burger")
+    .header-nav(class='header-nav--mobile' id="nav-menu__mobile")
+      .header-nav__wrapper
+        button.header-nav-close(id="burger__close")
+          svg.header-nav-close__icon(aria-hidden="true")
+            use(xlink:href="img/svg/sprite.svg#close")
+        nav.header-nav__nav
+          ul.header-nav__list
+            for link in navListItems
+              +headerLinkItem(link, 'nav')
+        svg.header-nav__back(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#backLogo")
+      ul.header-decriptions(class='header-decriptions--mobile')
+        for link in descriptionListItems
+          +headerLinkItem(link, 'decriptions')
+  +logo('header-', '--desktop')
+  nav.header-nav(class='header-nav--desktop')
+    ul.header-nav__list
+      for link in navListItems
+        +headerLinkItem(link, 'nav')
+  .header-foot
+    form.header-search
+      span.header-search-background(aria-hidden="true")
+        svg.header-search-background__icon(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#search")
+      label.header-search__label
+        input.header-search__input(type="text", placeholder="Я хочу купить...")
+      button.header-search-button.button-arrow(type="submit")
+        svg.button-arrow__icon(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#arrow")
+    .header-categories(id="categories__select")
+  .header-user
+    button.header-user-authorization
+      svg.header-user-authorization__icon(aria-hidden="true")
+        use(xlink:href="img/svg/sprite.svg#authorization")
+    button.header-user-cart
+      span.header-user-cart__count 0
+      svg.header-user-cart__icon(aria-hidden="true")
+        use(xlink:href="img/svg/sprite.svg#cart")

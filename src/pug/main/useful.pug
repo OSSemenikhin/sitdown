@@ -1,0 +1,66 @@
+include ../layout/mixins
+include ../layout/variables
+
+-
+  var breakPoints = [ 1400];
+  var slidesUsefull = [
+    {
+      breakPoints: breakPoints,
+      name: 'useful_1',
+      title: 'И нет сомнений, что сделанные на базе интернет-аналитики выводы представляют собой не что иное?',
+      href: '#',
+      alt: 'интерьер комнаты: большой стелаж'
+    },
+    {
+      breakPoints: breakPoints,
+      name: 'useful_2',
+      title: 'Как принято считать, некоторые особенности приносят несомненную пользу обществу?',
+      href: '#',
+      alt: 'интерьер комнаты: стол и стул'
+    },
+    {
+      breakPoints: breakPoints,
+      name: 'useful_3',
+      title: 'Ясность нашей позиции очевидна: укрепление и развитие внутренней структуры?',
+      href: '#',
+      alt: 'интерьер комнаты: ваза с растением на столе'
+    },
+    {
+      breakPoints: breakPoints,
+      name: 'useful_4',
+      title: 'Прежде всего, консультация с широким активом однозначно фиксирует необходимость распределения?',
+      href: '#',
+      alt: 'интерьер комнаты: ваза с растением на столе'
+    },
+    {
+      breakPoints: breakPoints,
+      name: 'useful_5',
+      title: 'Как принято считать, некоторые особенности приносят несомненную пользу обществу?',
+      href: '#',
+      alt: 'интерьер комнаты'
+    },
+  ];
+
+mixin itemSliderUsefull(slide)
+  -var obj = { alt: slide.alt, name: slide.name,  classNamePicture: 'useful-slider-article__picture', classNameImg: 'useful-slider-article__img', path: '/img/useful/', breakPoints: slide.slide}
+  .useful-slider__item.swiper-slide
+    article.useful-slider-article
+      +picture(obj, '','jpg', true)
+      .useful-slider-article__info
+        h3.useful-slider-article__title= slide.title
+        a.useful-slider-article__button(href=slide.href) Читать
+
+section.useful.container
+  h2.useful__title Полезное
+  .useful-slider-buttons(class='slider-buttons')
+    button.useful-slider-buttons-prev.button-arrow(class='slider-buttons-prev')
+      svg.button-arrow__icon(aria-hidden="true")
+        use(xlink:href="img/svg/sprite.svg#arrow")
+    button.useful-slider-buttons-next.button-arrow(class='slider-buttons-next')
+      svg.button-arrow__icon(aria-hidden="true")
+        use(xlink:href="img/svg/sprite.svg#arrow")
+  .useful-slider.swiper
+      .useful-slider-wrapper.swiper-wrapper
+        for slide in slidesUsefull
+          +itemSliderUsefull(slide)
+      .swiper-pagination

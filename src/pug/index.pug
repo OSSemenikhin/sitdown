@@ -1,0 +1,18 @@
+extends layout/main
+
+block styles
+  link(rel="stylesheet", href="https://unpkg.com/swiper@7/swiper-bundle.min.css")
+  link(rel="stylesheet", href="css/style.css")
+
+block scripts
+  script(src="https://unpkg.com/swiper@7/swiper-bundle.min.js")
+  //- script(src="/js/main.js")
+
+block content
+  include main/hero
+  include main/specialOffers
+  include main/highRating
+  include main/promo
+  include main/topCategories
+  include main/useful
+  include main/feedback

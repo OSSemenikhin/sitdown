@@ -1,0 +1,78 @@
+include ../layout/mixins
+include ../layout/variables
+
+-
+  var cards = [
+    {
+      name: 'specialOffers_1',
+      title: 'Кресло велюровое “X-24”',
+      offerSale:'- 9 000',
+      relevant: '15 990',
+      oldPrice: '24 990',
+    },
+    {
+      big: true,
+      name: 'specialOffers_2',
+      breakPoints: breakPoints,
+      title: 'Диван тканевый “Z-44”',
+      offerSale:'- 10 000',
+      relevant: '22 990',
+      oldPrice: '32 990',
+    },
+    {
+      name: 'specialOffers_3',
+      title: 'Будильник “Quartz-23”',
+      offerSale:'- 600',
+      relevant: '1 290',
+      oldPrice: '1 890',
+    },
+    {
+      name: 'specialOffers_4',
+      title: 'Мини-скульптура “Oh my deer”',
+      offerSale:'- 300',
+      relevant: '690',
+      oldPrice: '690',
+    },
+    {
+      big: true,
+      name: 'specialOffers_5',
+      breakPoints: breakPoints,
+      title: 'Диван вел-флок “Z-85”',
+      offerSale:'- 10 000',
+      relevant: '22 990',
+      oldPrice: '32 990',
+    },
+    {
+      name: 'specialOffers_6',
+      title: 'Термометр + гидрометр “H-18”',
+      offerSale:'- 700',
+      relevant: '1 390',
+      oldPrice: '2 090',
+    },
+  ]
+
+  var breakPoints = [ 1400 ];
+  var path = '/img/specialOffers/';
+  var n = 0;
+
+section.special.container
+  h2.special__title Специальные предложения
+  .special-slider-buttons(class='slider-buttons')
+    button.special-slider-buttons-prev.button-arrow(class='slider-buttons-prev' aria-label="Следующий слайд")
+      svg.button-arrow__icon(aria-hidden="true")
+        use(xlink:href="img/svg/sprite.svg#arrow")
+    button.special-slider-buttons-next.button-arrow(class='slider-buttons-next' aria-label="Предыдущий слайд")
+      svg.button-arrow__icon(aria-hidden="true")
+        use(xlink:href="img/svg/sprite.svg#arrow")
+  .special-slider.swiper
+    .special-slider__wrapper.swiper-wrapper
+      each card in cards
+
+        - card.className = 'special-slider'
+        if card.big
+          .special-slider__item.special-slider__item--big.swiper-slide
+            +itemSpecialCard(card, path, ++n)
+        else
+          .special-slider__item.swiper-slide
+            +itemSpecialCard(card, path, ++n)
+

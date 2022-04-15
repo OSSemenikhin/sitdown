@@ -1,0 +1,30 @@
+extends layout/main
+
+block styles
+  link(rel="stylesheet" href="css/contacts.css")
+
+block scripts
+  script(src="https://api-maps.yandex.ru/2.1/?apikey=30c606be-6c96-48b4-a6a2-80eab6220ea3&lang=ru_RU")
+
+block content
+  include layout/mixins
+  include layout/variables
+
+  section.contacts.container
+    .breadcrumbs
+      ul.breadcrumbs__list
+        li.breadcrumbs__item
+          a.breadcrumbs__link(href="#") Главная
+        li.breadcrumbs__item
+          a.breadcrumbs__link.breadcrumbs__link--active(href="#") Контакты
+    h2.contacts__title Контакты
+    .contacts-search
+      .contacts-search__select#search_select
+      //- input.contacts-search__input(type="text" placeholder="Поиск магазина")
+      button.contacts-search__button Поиск
+    .contacts-map
+      #map.contacts-map__wrapper
+      #map_error.contacts-map-error.contacts-map-error--hidden
+        svg.contacts-map-error__logo(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#backLogo")
+        h3.contacts-map-error__message По вашему запросу ничего не нашлось

@@ -1,0 +1,13 @@
+section.catalog-panel
+  h2.catalog-panel__title Фильтровать по:
+  include category
+  include price
+  include discount
+  include color
+  .catalog-panel-promo
+    h2.catalog-panel-promo__title Оксфорд 1950
+    h3.catalog-panel-promo__subtitle Новая коллекция изысканных кресел
+    a.catalog-panel-promo-pass(href="#")
+      span.catalog-panel-promo-pass__name В каталог
+      svg.catalog-panel-promo-pass__icon(class=modTitleIcon)
+        use(xlink:href="img/svg/sprite.svg#arrow")

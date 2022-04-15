@@ -1,0 +1,200 @@
+-
+  var breakPoints = [ '768', '320',];
+    var cardsList = [
+      {
+        name: 'catalog_sofas_1',
+        title: 'Диван кожаный ',
+        //- model: ' “R-94”',
+        model: 'R',
+        num: 94,
+        rating: '5,0',
+        relevant: '94 990',
+      },
+      {
+        name: 'catalog_sofas_2',
+        title: 'Диван апартековый ',
+        //- model: ' “T-75”',
+        model: 'T',
+        num: 75,
+        rating: '4,9',
+        relevant: '69 990',
+      },
+      {
+        name: 'catalog_sofas_3',
+        title: 'Диван тканевый ',
+        //- model: ' “D-31”',
+        model: 'D',
+        num: 31,
+        rating:'4,8',
+        relevant: '28 490',
+      },
+      {
+        name: 'catalog_sofas_4',
+        title: 'Диван велюровый ',
+        //- model: ' “Y-68”',
+        model: 'Y',
+        num: 68,
+        rating: '4,8',
+        relevant: '22 990',
+      },
+      {
+        name: 'catalog_sofas_5',
+        title: 'Диван из шинила ',
+        //- model: ' “W-95”',
+        model: 'W',
+        num: 95,
+        rating: '4,8',
+        relevant: '22 990',
+      },
+      {
+        name: 'catalog_sofas_6',
+        title: 'Диван флоковый ',
+        //- model: ' “G-41”',
+        model: 'G',
+        num: 41,
+        rating: '4,8',
+        relevant: '17 990',
+      },
+      {
+        name: 'catalog_sofas_7',
+        title: 'Диван шиниловый ',
+        //- model: ' “V-43”',
+        model: 'V',
+        num: 43,
+        rating: '4,8',
+        relevant: '19 990',
+      },
+      {
+        name: 'catalog_sofas_8',
+        title: 'Диван велюровый ',
+        //- model: ' “S-99”',
+        model: 'S',
+        num: 99,
+        rating: '4,7',
+        relevant: '19 990',
+      },
+      {
+        name: 'catalog_sofas_9',
+        title: 'Диван из кожзама ',
+        //- model: ' “F-85”',
+        model: 'F',
+        num: 85,
+        rating: '4,7',
+        relevant: '26 990',
+      },
+      {
+        name: 'catalog_sofas_10',
+        title: 'Диван флоковый ',
+        //- model: ' “H-64”',
+        model: 'H',
+        num: 64,
+        rating: '4,6',
+        relevant: '25 990',
+      },
+      {
+        name: 'catalog_sofas_11',
+        title: 'Диван флоковый ',
+        //- model: ' “H-58”',
+        model: 'H',
+        num: 58,
+        rating: '4,6',
+        relevant: '23 990',
+      },
+      {
+        name: 'catalog_sofas_12',
+        title: 'Диван из кожзама ',
+        //- model: ' “R-43”',
+        model: 'R',
+        num: 43,
+        rating: '4,6',
+        relevant: '33 990',
+      },
+      {
+        name: 'catalog_sofas_13',
+        title: 'Диван из шинила ',
+        //- model: ' “С-42”',
+        model: 'С',
+        num: 42,
+        rating: '4,6',
+        relevant: '18 990',
+      },
+      {
+        name: 'catalog_sofas_14',
+        title: 'Диван велюровый ',
+        //- model: ' “U-58”',
+        model: 'U',
+        num: 58,
+        rating: '4,6',
+        relevant: '21 990',
+      },
+      {
+        name: 'catalog_sofas_15',
+        title: 'Диван флоковый ',
+        //- model: ' “F-41”',
+        model: 'F',
+        num: 41,
+        rating: '4,5',
+        relevant: '17 990',
+      },
+      {
+        name: 'catalog_sofas_16',
+        title: 'Диван велюровый ',
+        //- model: ' “R-85”',
+        model: 'R',
+        num: 85,
+        rating: '4,5',
+        relevant: '34 990',
+      },
+      {
+        name: 'catalog_sofas_17',
+        title: 'Диван велюровый ',
+        //- model: ' “S-44”',
+        model: 'S',
+        num: 44,
+        rating: '4,5',
+        relevant: '19 990',
+      },
+      {
+        name: 'catalog_sofas_18',
+        title: 'Диван из шинила ',
+        //- model: ' “С-80”',
+        model: 'С',
+        num: 80,
+        rating: '4,4',
+        relevant: '20 990',
+      },
+    ];
+    var ind = 0;
+    var path = '/img/catalog/sofas/';
+
+
+section.catalog__content
+  .catalog__header
+    h2.catalog__title Каталог
+    ul.catalog-filters-applied
+      li._hidden
+        ul#sublist_category.catalog-filters-applied__sublist
+      li#display_price.catalog-filters-applied__item.catalog-filters-applied__item--yellow(data-target="price")
+        button.catalog-filters-applied-close(data-path_close="price")
+          svg.catalog-filters-applied-close__icon(aria-hidden="true")
+            use(xlink:href="img/svg/sprite.svg#close")
+        span#display_price_count.catalog-filters-applied__value До 150 000
+      li.catalog-filters-applied__item.catalog-filters-applied__item--violet(data-target="sale")
+        button.catalog-filters-applied-close(data-path_close="sale")
+          svg.catalog-filters-applied-close__icon(aria-hidden="true")
+            use(xlink:href="img/svg/sprite.svg#close")
+        span.catalog-filters-applied__value Без скидки
+      li
+        ul#sublist_color.catalog-filters-applied__sublist
+  .catalog-filters
+    h4.catalog-filters__title Фильтры:
+    ul.catalog-filters__list
+      li.catalog-filters__item(id='filter_category')
+      li.catalog-filters__item(id='filter_price')
+      li.catalog-filters__item(id='filter_sale')
+      li.catalog-filters__item(id='filter_color')
+  ul.catalog__list
+    each card in cardsList
+      li.catalog__item(class='catalog__item--hidden')
+        +itemMerchCard(card, path, ++ind)
+  .catalog-buttons

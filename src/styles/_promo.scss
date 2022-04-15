@@ -1,0 +1,165 @@
+@use "sass:math";
+
+.promo {
+  position: relative;
+  margin-bottom: 70px;
+
+  &__background {
+    min-height: 210px;
+    height: calc(100vw - 130px);
+    margin-bottom: 33px;
+    background-image: url(../img/promo/promo_320.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  // &__picture {
+  //   position: relative;
+  //   margin-bottom: 28px;
+  //   min-height: 210px;
+  //   display: flex;
+  //   flex-direction: column;
+  // }
+
+  // &__img {
+  //   // position: absolute;
+  //   // left: 0;
+  //   // top: 0;
+  //   min-height: 100%;
+  //   object-fit: cover;
+  //   flex: 1 1 100%;
+  //   display: block;
+  // }
+
+  // &__picture,
+  // &__img {
+  //   width: 100%;
+  //   // height: 100%;
+  //   height: calc(100vw - 130px);
+  // }
+
+  &__info {
+    position: absolute;
+    top: 34px;
+    left: $containerPadding320;
+    width: 75%;
+    max-height: 150px;
+  }
+
+  &__title,
+  &__text {
+    margin: 0;
+  }
+
+  &__title {
+    @include lineHiddenEllipsis(1, 'unset');
+    @include titleMain;
+    font-family: "Playfair Display";
+    color: $colorPromo;
+    font-size: calc(24px + (60 - 24)*((100vw - 320px) / (1200 - 320)));
+  }
+
+  &__text {
+    @include lineHiddenEllipsis(4, 'unset');
+    width: 75%;
+    font-weight: 200;
+    font-size: calc(16px + (50 - 16)*((100vw - 320px) / (1200 - 320)));
+    line-height: 125%;
+    letter-spacing: 0.4px;
+    color: $colorBackLight;
+  }
+
+  &__button {
+    &--desktop {
+      display: none;
+    }
+
+    @include buttonPrimary("filled");
+    position: relative;
+    left: 50%;
+    width: 296px;
+    padding: 16px 0;
+    display: inline-block;
+    font-weight: bold;
+    word-break: break-all;
+    transform: translateX(-50%);
+  }
+}
+
+@media (min-width: 768px) {
+  .promo {
+    margin-bottom: 70px;
+
+    &__title {
+      font-size: 60px;
+    }
+
+    &__background {
+      height: 600px;
+      background-image: url(../img/promo/promo_768.jpg);
+    }
+
+    &__info {
+      top: 161px;
+      left: math.div($containerPadding768, 2);
+      max-height: 450px;
+    }
+
+    &__text {
+      width: 480px;
+      margin-bottom: 45px;
+      font-size: 50px;
+    }
+
+    &__button {
+      left: 0;
+      width: 187px;
+      transform: translateX(0%);
+
+      &--mobile {
+        display: none;
+      }
+
+      &--desktop {
+        display: inline-block;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .promo {
+    margin-bottom: 70px;
+    &__background {
+      background-image: url(../img/promo/promo_1024.jpg);
+    }
+
+    &__info {
+      width: 70%;
+      left: $containerPadding1024;
+    }
+    &__text {
+      margin-bottom: 46px;
+    }
+  }
+}
+
+@media (min-width: 1300px) {
+  .promo {
+    margin-bottom: 69px;
+
+    &__img {
+      height: 600px;
+      object-fit: cover;
+    }
+
+    &__background {
+      background-image: url(../img/promo/promo_1300.jpg);
+    }
+
+    &__info {
+      left: $containerPaddingDesktop;
+      width: 35%;
+    }
+  }
+}

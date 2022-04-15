@@ -1,0 +1,358 @@
+@import "mixins";
+@import "variables";
+
+.contacts {
+  &__title {
+    margin: 0;
+    margin-bottom: 17px;
+    padding: 0;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 100%;
+  }
+}
+
+.contacts-search {
+  position: relative;
+  margin-bottom: 32px;
+  z-index: 1;
+
+  &__select {
+    width: 100%;
+    margin-bottom: 14px;
+  }
+
+  &__input {
+    $transitionProp: background-color, color, border-color;
+    @include transition($transitionProp);
+    @include greyBackground;
+    @include inputsActiveStates;
+    width: 100%;
+    height: 54px;
+    padding: 0 16px;
+
+    &::placeholder {
+      font-size: 16px;
+      line-height: 40px;
+      color: $colorBackGrey;
+    }
+  }
+
+  &__list {
+    border: 1px solid $colorBackMdGrey;
+    border-radius: 15px;
+  }
+
+  &__option {
+    width: 100%;
+    padding: 8px 18px;
+    border: 1px solid transparent;
+    cursor: pointer;
+
+    &:not(:last-child) {
+      border-bottom: 1px solid $colorBackMdGrey;
+    }
+
+    &__item.choozzie__transition {
+      $transitionProp: background-color, color, border-color;
+      @include transition($transitionProp);
+    }
+
+    &--one.choozzie__item--one {
+      border-radius: 10px;
+    }
+
+    &--first {
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    &--last {
+      border-bottom-left-radius: 10px;
+      border-bottom-right-radius: 10px;
+    }
+
+    &.choozzie__item--hidden {
+      padding: 0;
+      border: none;
+    }
+
+    &:hover {
+      background-color: $colorBackLight1;
+    }
+    &:focus {
+      outline: none;
+    }
+    &:active {
+      background-color: $colorBackMdGrey;
+    }
+
+    &.focused {
+      border-color: $colorPrimaryLight;
+      background: $colorPrimaryBone;
+    }
+  }
+
+  &__name,
+  &__address {
+    margin: 0;
+    padding: 0;
+    pointer-events: none;
+  }
+
+  &__name {
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 22px;
+    color: $colorBackBlack;
+  }
+
+  &__address {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 180%;
+    color: $colorBackGrey;
+  }
+
+  &__button {
+    @include buttonPrimary("filled");
+    padding: 14px 34px;
+    font-weight: 600;
+    font-size: 16px;
+  }
+}
+
+ymaps[class*="balloon"] {
+  border-radius: 25px;
+}
+
+ymaps[class*="balloon__close"] {
+  right: 10px;
+  top: 5px;
+}
+
+ymaps[class*="balloon__close-button"] {
+  right: 10px;
+  top: 5px;
+  background: url("/img/svg/sprite.svg#close") 50% no-repeat;
+  transition: background-image 0.2s;
+
+  &:hover {
+    background-image: url("/img/svg/sprite.svg#closeHover");
+  }
+  &:active {
+    background-image: url("/img/svg/sprite.svg#closeActive");
+  }
+}
+
+.contacts-map {
+  position: relative;
+  margin-bottom: 70px;
+
+  &__wrapper {
+    width: 100%;
+    height: 510px;
+  }
+}
+
+.contacts-map-error {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 510px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: $colorBackLight1;
+  opacity: 1;
+  pointer-events: all;
+  transition: opacity 0.2;
+
+  &__logo {
+    fill: $colorBackGrey;
+  }
+
+  &__message {
+    width: 200px;
+    text-align: center;
+    color: $colorBackGrey;
+  }
+
+  &--hidden {
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+.contacts-map-popup {
+  padding: 8px 0 0 15px;
+  width: 250px;
+
+  &__title,
+  &__address {
+    margin: 0;
+    padding: 0;
+    font-family: "Open Sans";
+    color: $colorBackBlack;
+  }
+
+  &__title {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+  }
+
+  &__address {
+    margin-bottom: 12px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+  }
+}
+
+.contacts-map-popup-tel {
+  @include telLink;
+  margin-bottom: 16px;
+  padding-left: 23px;
+  font-size: 14px;
+}
+
+.contacts-map-popup-hours {
+  padding: 5px 0 8px 0;
+  margin-bottom: 16px;
+  border-top: 1px solid $colorBackLight1;
+  border-bottom: 1px solid $colorBackLight1;
+
+  &__title,
+  &__time {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-weight: 400;
+    // font-size: 14px;
+    font-size: 12px;
+    line-height: 180%;
+  }
+
+  &__title {
+    color: $colorBackGrey;
+  }
+
+  &__time {
+    color: $colorBackBlack;
+  }
+}
+
+.contacts-map-popup-description {
+  width: 192px;
+  display: flex;
+
+  &__title,
+  &__text {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+    font-weight: 400;
+    font-size: 12px;
+    // font-size: 14px;
+    line-height: 180%;
+  }
+
+  &__title {
+    width: 145px;
+    color: $colorBackGrey;
+  }
+
+  &__text {
+    color: $colorBackBlack;
+  }
+}
+
+.footer-head-nav {
+  row-gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .header {
+    margin-bottom: 17px;
+  }
+
+  .contacts {
+    &__title {
+      font-size: 32px;
+    }
+  }
+
+  .contacts-search {
+    display: flex;
+    align-content: center;
+
+    &__select {
+      width: 65%;
+      height: 53px;
+      margin-bottom: 0;
+      margin-right: 30px;
+    }
+
+    &__input {
+      height: 100%;
+    }
+  }
+
+  .contacts-map-popup {
+    &__title {
+      margin-bottom: 7px;
+      font-size: 16px;
+      line-height: 100%;
+    }
+
+    &__address {
+      font-size: 14px;
+      line-height: 180%;
+    }
+  }
+
+  .contacts-map-popup-hours {
+    &__title,
+    &__time {
+      font-size: 14px;
+    }
+  }
+
+  .contacts-map-popup-description {
+    &__title,
+    &__text {
+      font-size: 14px;
+      line-height: 180%;
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .contacts-search {
+    &__select {
+      width: 65.5%;
+      margin-right: 32px;
+    }
+  }
+
+  .footer-head {
+    padding-top: 22px;
+  }
+}
+
+@media (min-width: 1300px) {
+  .contacts-search {
+    &__select {
+      width: 49%;
+      margin-right: 29px;
+    }
+  }
+
+  .footer-head {
+    padding-top: 27px;
+  }
+}

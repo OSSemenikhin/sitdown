@@ -1,0 +1,75 @@
+include mixins
+include variables
+
+-
+  var aboutUs = {
+    className: 'aboutUs',
+    title: 'О нас',
+    links: [
+      { name: 'О компании', href: '#', },
+      { name: 'Блог', href: '#', },
+    ],
+  };
+  var services = {
+    className: 'services',
+    title: 'Услуги',
+    links: [
+      { name: 'Доставка', href: '#', },
+      { name: 'Рассрочка и кредит', href: '#', },
+      { name: 'Сборка и установка', href: '#', },
+    ],
+  };
+  var communication = {
+    className: 'communication',
+    title: 'Связь с нами',
+    links: [
+      { name: 'Обратная связь', href: '#', },
+      { name: 'Контакты', href: '#', },
+    ],
+  };
+  var cooperation = {
+    className: 'cooperation',
+    title: 'Сотрудничество',
+    links: [
+      { name: 'Поставщикам', href: '#', },
+      { name: 'Оптовикам', href: '#', },
+      { name: 'Карьера', href: '#', },
+    ],
+  };
+
+
+mixin footerLinksList(obj)
+  -var classNameList = 'footer-head-nav-' + obj.className;
+  -var classNameItem = 'footer-head-nav-' + obj.className + '__item';
+
+  div.footer-head-nav__item
+    h3.footer-head-nav__title= obj.title
+    ul(class=classNameList)
+      for link in obj.links
+        li(class=classNameItem)
+          a.footer-head-nav__link(href= link.href)= link.name
+
+mixin socLink(obj)
+  -var path = 'img/svg/sprite.svg#' + obj.id;
+  a.footer-head-socials__link(href=obj.href)
+    svg.footer-head-socials__icon(aria-hidden="true")
+      use(xlink:href=path)
+
+
+footer.footer
+  .footer-head
+    .container.footer-head__wrapper
+      +logo('footer-head-')
+      ul.footer-head-socials
+        for link in socials
+          li.footer-head-socials__item
+            +socLink(link)
+      div.footer-head-nav
+        +footerLinksList(aboutUs)
+        +footerLinksList(services)
+        +footerLinksList(communication)
+        +footerLinksList(cooperation)
+  .footer-foot
+    .container
+      p.footer-foot__text SDP®&#160;&#160;&#160;2011-2021
+

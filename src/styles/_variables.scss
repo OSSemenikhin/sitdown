@@ -1,0 +1,59 @@
+@use "sass:math";
+
+$arrowDownSvg: '<svg width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg"> <path fill-rule="evenodd" clip-rule="evenodd" d="M5.65674 5.80521L10.5593 0.902607L11.3136 1.65685L5.65674 7.31371L-0.000115871 1.65685L0.754131 0.902607L5.65674 5.80521Z" fill="currentColor"/> </svg>';
+
+// COLORS
+$colorBackWhite: #ffffff;
+$colorBackBlack: #333333;
+$colorBackLight: #f6f6f6;
+$colorBackLight1: #f7f7f7;
+$colorBackMdGrey: #eaeaea;
+$colorBackGrey: #999999;
+$colorBackGrey1: #666666;
+$colorPrimary: #a65cf0;
+$colorPrimaryLight: #c998fb;
+$colorPrimaryShade: #7033ac;
+$colorPrimaryBone: #f8efff;
+$colorPinkViolet: #ebd1ff;
+$colorPinkLight: #f8efff;
+$colorSecondary: #ff862f;
+$colorSecondaryLight: #ffbd59;
+$colorSecondaryBone: #fff5d1;
+$colorSecondaryShade: #bb370e;
+$colorLime: #DAFFD1;
+$colorBone: #FFF5D1;
+$colorSecondaryShade: #bb370e;
+$colorPromo: #d5b986;
+$colorPromoGrey: rgb(142, 142, 142);
+$colorDanger: #FF6972;
+$colorSucccess: #B8EC64;
+
+// LOGO
+$logoWidth: 187px;
+$logoHeight: 27px;
+
+// Container
+$containerWidth320: 92.5%;
+$containerWidth768: 81.25%;
+$containerWidth1024: 92.875%;
+$containerDesktop: 1280px;
+
+$containerWidth: 92.5%;
+
+@media (min-width: 768px) {
+  $containerWidth: 81.25%;
+}
+
+@media (min-width: 1024px) {
+  $containerWidth: 92.875%;
+}
+
+@media (min-width: 1300px) {
+  $containerWidth: 1280px;
+}
+
+// containerPadding
+$containerPadding320: math.div(100% - $containerWidth320, 2);
+$containerPadding768: math.div(100% - $containerWidth768, 2);
+$containerPadding1024: math.div(100% - $containerWidth1024, 2);
+$containerPaddingDesktop: calc((100% - 1280px) / 2);

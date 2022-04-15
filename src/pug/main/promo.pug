@@ -1,0 +1,25 @@
+include ../layout/mixins
+include ../layout/variables
+
+-
+  var pic = {
+    classNamePicture: 'promo__picture',
+    classNameImg: 'promo__img',
+    name: 'promo',
+    breakPoints: [
+    1300,
+    768,
+    320,
+    ],
+    path:' /img/promo/',
+    }
+
+section.promo
+  //- +picture(pic, '', 'jpg')
+  .promo__background
+  .promo__info
+    h2.promo__title Оксфорд 1950
+    p.promo__text Новая коллекция изысканных кресел
+    a.promo__button(class='promo__button--desktop' href='#') Ознакомиться
+  .container
+    a.promo__button(class='promo__button--mobile' href='#') Ознакомиться

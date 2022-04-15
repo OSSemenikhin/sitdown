@@ -1,0 +1,53 @@
+-
+  var colorLables = {
+    mod: "gray",
+    checked: 7,
+    lables: [
+      'Коричневый',
+      'Черный',
+      'Бежевый',
+      'Серый',
+      'Белый',
+      'Синий',
+      'Оранжевый',
+      'Желтый',
+      'Зеленый',
+
+      'Коричневый',
+      'Черный1',
+      'Бежевый1',
+      'Серый1',
+      'Белый1',
+      'Синий1',
+      'Оранжевый1',
+    ],
+  };
+
+section.catalog-panel-color
+  h3.catalog-panel__subtitle.catalog-panel-color__title Цвет
+  form.catalog-panel-color__form
+    ul.catalog-panel-color__list
+      - var i = 1;
+      for color in colorLables.lables
+        if i < 10
+          li.catalog-panel-color__item
+            label.catalog-panel-color__label.catalog-panel-category__checkbox(data-path="color" data-value-display-path=color)
+              if i === 7
+                input.catalog-panel-color__input.catalog-panel-color__input--hidden.catalog-panel-category__checkbox--hidden(type="checkbox" name="color" data-mod=colorLables.mod checked)
+              else
+                input.catalog-panel-color__input.catalog-panel-color__input--hidden.catalog-panel-category__checkbox--hidden(type="checkbox" name="color" data-mod=colorLables.mod)
+              span.catalog-panel-color__input.catalog-panel-color__input--visible.catalog-panel-category__checkbox--visible
+              |#{color}
+          if i == 9
+            li.catalog-panel-color__item
+              button#panel_color_more.catalog-panel-color__more + ещё #{colorLables.lables.length - i}
+        else
+          li.catalog-panel-color__item.catalog-panel-color__item--hidden
+            label.catalog-panel-color__label.catalog-panel-category__checkbox(data-path="color" data-value-display-path=color)
+              input.catalog-panel-color__input.catalog-panel-color__input--hidden.catalog-panel-category__checkbox--hidden(type="checkbox" name="color" data-mod=colorLables.mod)
+              span.catalog-panel-color__input.catalog-panel-color__input--visible.catalog-panel-category__checkbox--visible
+              |#{color}
+          if i == colorLables.lables.length
+            li.catalog-panel-color__item.catalog-panel-color__item--hidden
+              button#panel_color_curtail.catalog-panel-color__more свернуть
+        - i++

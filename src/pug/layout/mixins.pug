@@ -1,0 +1,168 @@
+mixin logo(blockClass, mod)
+  -
+    var classNameWrapper = blockClass + 'logo';
+    var classNameLink = blockClass + 'logo__link';
+  if mod > ''
+    - var classNameWrapperFull = classNameWrapper + ' ' + classNameWrapper + mod;
+    div(class=classNameWrapperFull)
+      a(class=classNameLink href="#")
+        svg(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#logo")
+  else
+    div(class=classNameWrapper)
+      a(class=classNameLink href="#")
+        svg(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#logo")
+
+mixin picture(obj, ind = '', type = 'jpg', ariaHidden = false)
+  -
+    var pathWebp= obj.path + obj.name + '.webp';
+    var pathImg = obj.path + obj.name + '.' + type;
+    var pathImgSet = '';
+
+  if ind != '' || ind > 0
+    if obj.mod
+      -var uniqueClassNamePicture = obj.classNamePicture + '--' + ind;
+      -var classNamePictureFull = obj.classNamePicture + ' ' + uniqueClassNamePicture + ' ' + obj.mod;
+      -var uniqueClassNameImg = obj.classNameImg + '--' + ind;
+      -var classNameImgFull = obj.classNameImg + ' ' + uniqueClassNameImg + (obj.classNameImgMod ? ' ' + obj.classNameImgMod: '' );
+    else
+      -var uniqueClassNamePicture = obj.classNamePicture + '--' + ind;
+      -var classNamePictureFull = obj.classNamePicture + ' ' + uniqueClassNamePicture;
+      -var uniqueClassNameImg = obj.classNameImg + '--' + ind;
+      -var classNameImgFull = obj.classNameImg + ' ' + uniqueClassNameImg + (obj.classNameImgMod ? ' ' + obj.classNameImgMod: '' );
+  else
+    if obj.mod
+      -var classNamePictureFull = obj.classNamePicture + ' ' + obj.mod;
+      -var classNameImgFull = obj.classNameImg + (obj.classNameImgMod ? ' ' + obj.classNameImgMod: '' );
+    else
+      -var classNamePictureFull = obj.classNamePicture;
+      -var classNameImgFull = obj.classNameImg + (obj.classNameImgMod ? ' ' + obj.classNameImgMod: '' );
+
+  if ariaHidden === true
+    picture(class=classNamePictureFull)
+      if obj.breakPoints
+        for w in obj.breakPoints
+          -
+            var name = obj.name + '_' + w;
+            var pathWebp = obj.path + name + '.webp';
+            var minWidth = '(min-width: ' + w + 'px)';
+
+          source(srcset=pathWebp type="image/webp" media=minWidth)
+      source(srcset=pathWebp type="image/webp")
+      if pathImgSet != ''
+        img(class=classNameImgFull loading="lazy" srcset=pathImgSet src=pathImg alt=obj.alt)
+      else
+        img(class=classNameImgFull loading="lazy" src=pathImg alt=obj.alt)
+  else
+    picture(class=classNamePictureFull)
+      if obj.breakPoints
+        for w in obj.breakPoints
+          -
+            var name = obj.name + '_' + w;
+            var pathWebp = obj.path + name + '.webp';
+            var minWidth = '(min-width: ' + w + 'px)';
+
+          source(srcset=pathWebp type="image/webp" media=minWidth)
+      source(srcset=pathWebp type="image/webp")
+      if pathImgSet != ''
+        img(class=classNameImgFull loading="lazy" srcset=pathImgSet src=pathImg alt=obj.alt)
+      else
+        img(class=classNameImgFull loading="lazy" src=pathImg alt=obj.alt)
+
+mixin itemMerchCard(card, path, ind)
+  if card.breakPoints
+    -
+      var pic = {
+        name: card.name,
+        classNamePicture: 'product-card__picture',
+        classNameImg: 'product-card__img',
+        path: path,
+        breakPoints: card.breakPoints,
+        alt: card.alt ? card.alt : '',
+      }
+  else
+    -
+      var pic = {
+        name: card.name,
+        classNamePicture: 'product-card__picture',
+        classNameImg: 'product-card__img',
+        path: path,
+        alt: card.alt ? card.alt : '',
+      }
+
+  article.product-card
+    .product-card-rating
+      span.product-card-rating__icon
+        svg(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#star")
+      span.product-card-rating__indicator= card.rating
+    +picture(pic, ind, 'png')
+    h3.product-card__title(class='product-card__title--' + ind)
+      a.product-card__link=card.title
+        //- span.product-card__model= card.model
+        //- |#{' ' + card.model}
+        |“#{card.model}&#8209;#{card.num}”
+        //- &#8209; “”
+    p.product-card__price.product-card__price--relevant= card.relevant + ' руб'
+    a.product-card__button.button-nofilled Купить
+
+mixin itemSpecialCard(card, path, ind)
+  -
+    //- var classNameArticle = card.className + '-article';
+    var classNameArticle = 'special-card';
+    var classNameArticleUnique = classNameArticle + '--' + ind;
+    var classNameArticleBig = card.big ? classNameArticle + '--big' : '';
+    var classNameArticleFull = classNameArticle + ' ' + classNameArticleUnique + ' ' + classNameArticleBig;
+
+    var classNameSale = classNameArticle + '-sale';
+    var classNameSaleBig =  card.big ? classNameSale + '--big' : '';
+    var classNameSaleFull = classNameSale + ' ' + classNameSaleBig;
+
+    var classNameText = classNameArticle + '__text';
+    var classNameTextBig =  card.big ? classNameText + '--big' : '';
+    var classNameTextFull = classNameText + ' ' + classNameTextBig;
+
+    var classNameTitle = classNameArticle + '__title';
+    var classNameTitleBig =  card.big ? classNameTitle + '--big' : '';
+    var classNameTitleFull = classNameTitle + ' ' + classNameTitleBig;
+
+    var classNameButton = classNameArticle + '__button';
+    var classNameButtonBig =  card.big ? classNameButton + '--big' : '';
+    var classNameButtonFull = classNameButton + ' ' + classNameButtonBig;
+
+
+  if card.breakPoints
+    -
+      var pic = {
+        name: card.name,
+        classNamePicture: classNameArticle + '__picture',
+        classNameImg: card.big ? classNameArticle + '__img' + ' ' + classNameArticle + '__img--big' : classNameArticle + '__img',
+        path: path,
+        breakPoints: card.breakPoints,
+        mod: card.big ? classNameArticle + '__picture--big' : '',
+        alt: card.alt ? card.alt : '',
+      }
+  else
+    -
+      var pic = {
+        name: card.name,
+        classNamePicture: classNameArticle + '__picture',
+        classNameImg: card.big ? classNameArticle + '__img' + ' ' + classNameArticle + '__img--big' : classNameArticle + '__img',
+        path: path,
+        mod: card.big ? classNameArticle + '__picture--big' : '',
+        alt: card.alt ? card.alt : '',
+      }
+
+  article(class=classNameArticleFull)
+    div(class=classNameSaleFull)
+      div(class=classNameArticle + '-sale__bacground' + ' ' + classNameArticle + '-sale__bacground--square')
+        span.product-card-sale__sum(class=classNameArticle + '-sale__sum')= card.offerSale
+    +picture(pic, ind, 'png')
+    div(class=classNameTextFull)
+      h3(class=classNameTitleFull)
+        a(class=classNameArticle + '__link' href='#')=card.title
+        |#{card.model}
+      p(class=classNameArticle + '__price' + ' ' + classNameArticle + '__price--relevant')= card.relevant + ' руб'
+      p(class=classNameArticle + '__price' + ' ' + classNameArticle + '__price--old')= card.oldPrice + ' руб'
+    a.button-nofilled(class=classNameButtonFull href='#') Купить

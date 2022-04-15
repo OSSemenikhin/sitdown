@@ -1,0 +1,27 @@
+include ../layout/mixins
+include ../layout/variables
+section.feedback.container
+  h2.feedback__title Мы всегда вам рады!
+  p.feedback__text Безусловно, новая модель организационной деятельности в значительной степени обусловливает важность распределения внутренних резервов и ресурсов.
+    span.feedback-popup
+      span.feedback-popup__icon(id="feedback_tooltip_button" role="button")
+        svg.feedback-popup__svg(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#questionMark")
+      span.feedback-popup__text(id="feedback_tooltip_text") Реплицированные с зарубежных источников, исследования формируют глобальную сеть.
+  form.feedback-form
+    p.feedback-form__error.feedback-form__error--name.feedback-form__error--hidden
+    label.feedback-form__label
+      input.feedback-form__input(type='text' placeholder="Как вас зовут?")
+    p.feedback-form__error.feedback-form__error--phone.feedback-form__error--hidden
+    label.feedback-form__label
+      input.feedback-form__input(type='text' placeholder="Ваш телефон")
+    p.feedback-form__error.feedback-form__error--email.feedback-form__error--hidden
+    label.feedback-form__label
+      input.feedback-form__input(type='text' placeholder="Ваш e-mail")
+    button.feedback-form__button.button-filled(type='submit') Отправить
+    p.feedback-form__error.feedback-form__error--check.feedback-form__error--hidden
+    label.feedback-form__label.feedback-form__checkbox
+      input.feedback-form__checkbox(class='feedback-form__checkbox--hidden' type="checkbox")
+      span.feedback-form__checkbox(class='feedback-form__checkbox--visible')
+      |Принимаю &nbsp;
+      a.feedback-form__agreement(href='#') пользовательское соглашение

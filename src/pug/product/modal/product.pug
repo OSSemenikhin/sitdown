@@ -1,0 +1,19 @@
+.modal__container.modal__container--product(data-goody-target="product")
+  button.modal__close
+    svg.modal__close-icon(aria-hidden="true")
+      use(xlink:href="/img/svg/sprite.svg#close")
+  .modal__content
+    .modal-header
+    .modal-footer
+      .modal-footer-slider.swiper
+        .modal-footer-slider__wrapper.swiper-wrapper
+          - var n = 0
+            for img in heroImagesPreview
+              .modal-footer-slider__item.swiper-slide.choozzie-no-close
+                button.modal-footer-slider__button.choozzie-no-close
+      button.modal-footer-slider-buttons.modal-footer-slider-buttons--prev.button-arrow(class='slider-buttons-prev')
+        svg.button-arrow(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#arrow")
+      button.modal-footer-slider-buttons.modal-footer-slider-buttons--next.button-arrow(class='slider-buttons-next')
+        svg.button-arrow(aria-hidden="true")
+          use(xlink:href="img/svg/sprite.svg#arrow")

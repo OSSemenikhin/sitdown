@@ -1,0 +1,57 @@
+-
+  var categoryLables = {
+    mod: 'green',
+    checked: 1,
+    lables: [
+      'Диваны',
+      'Кресла',
+      'Пуфы',
+      'Кровати',
+      'Тумбы',
+      'Комоды',
+      'Стулья',
+      'Столы',
+      'Аксессуары',
+
+      'Диваны1',
+      'Кресла1',
+      'Пуфы1',
+      'Кровати1',
+      'Тумбы1',
+      'Комоды1',
+      'Стулья1',
+      'Столы1',
+      'Аксессуары1',
+      'Стулья2',
+      'Столы2',
+      'Аксессуары2',
+    ],
+  };
+section.catalog-panel-category
+  h3.catalog-panel__subtitle.catalog-panel-category__title Категория
+  form.catalog-panel-category__form
+    ul.catalog-panel-category__list
+      - var i = 1;
+      for category in categoryLables.lables
+        if i < 10
+          li.catalog-panel-category__item
+            label.catalog-panel-category__label.catalog-panel-category__checkbox(data-path="category" data-value-display-path=category)
+              if i === 1
+                input.catalog-panel-category__input.catalog-panel-category__input--hidden.catalog-panel-category__checkbox--hidden(type="checkbox" name="category" data-mod=categoryLables.mod checked)
+              else
+                input.catalog-panel-category__input.catalog-panel-category__input--hidden.catalog-panel-category__checkbox--hidden(type="checkbox" name="category" data-mod=categoryLables.mod)
+              span.catalog-panel-category__input.catalog-panel-category__checkbox--visible
+              | #{category}
+          if i == 9
+            li.catalog-panel-category__item
+              button#panel_category_more.catalog-panel-category__more + ещё #{categoryLables.lables.length - i}
+        else
+          li.catalog-panel-category__item.catalog-panel-category__item--hidden
+            label.catalog-panel-category__label.catalog-panel-category__checkbox(data-path="category" data-value-display-path=category)
+              input.catalog-panel-category__input.catalog-panel-category__input--hidden.catalog-panel-category__checkbox--hidden(type="checkbox" name="category" data-mod=categoryLables.mod)
+              span.catalog-panel-category__input.catalog-panel-category__checkbox--visible
+              | #{category}
+          if i == categoryLables.lables.length
+            li.catalog-panel-category__item.catalog-panel-category__item--hidden
+              button#panel_category_curtail.catalog-panel-category__more свернуть
+        - i++

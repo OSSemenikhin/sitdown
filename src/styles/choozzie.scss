@@ -1,0 +1,88 @@
+@import "mixins";
+@import "variables";
+.choozzie__aria-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.choozzie {
+  position: relative;
+  display: inline-block;
+}
+
+.choozzie__button {
+  cursor: pointer;
+  position: relative;
+}
+
+.choozzie__button {
+  width: 100%;
+  border: none;
+  background-color: transparent;
+  font-family: inherit;
+}
+.choozzie__button.open {
+  z-index: 1001;
+}
+
+.choozzie__current,
+.choozzie__icon {
+  pointer-events: none;
+}
+
+.choozzie__icon svg {
+  transition: transform 0.2s linear;
+}
+
+.choozzie__button.open .choozzie__icon svg {
+  transform: rotateX(-180deg);
+}
+
+.choozzie__list {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  list-style: none;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.choozzie__list.open {
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 1000;
+}
+
+.choozzie__option {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  font-family: inherit;
+  text-align: left;
+  font-size: inherit;
+  cursor: pointer;
+}
+
+.choozzie__name,
+.choozzie__checkbox--hidden,
+.choozzie__checkbox {
+  pointer-events: none;
+}
+
+.choozzie__item--hidden {
+  height: 0;
+  width: 0;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
